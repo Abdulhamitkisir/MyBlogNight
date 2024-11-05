@@ -1,6 +1,14 @@
+using MyBlogNight.DataAccessLayer.Context;
+using MyBlogNight.EntityLayer.Concrete;
+using MyBlogNight.PresentationLayer.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddDbContext<BlogContext>();
+builder.Services.AddIdentity<AppUser,AppRole>().AddEntityFrameworkStores<BlogContext>().AddErrorDescriber<CustomIdentityErrorValidator>();
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
