@@ -5,10 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyBlogNight.DataAccessLayer.Abstract
+namespace MyBlogNight.BusinessLayer.Abstract
 {
-    public interface IArticleDal : IGenericDal<Article>
+    public interface IContactService :IGenericService<Contact>
     {
-        List<Article> ArticleListWithCategory();
     }
 }

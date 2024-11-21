@@ -23,7 +23,7 @@ namespace MyBlogNight.DataAccessLayer.Repositories
             var value=_context.Set<T>().Find(id);
             _context.Set<T>().Remove(value);
             _context.SaveChanges();
-            throw new NotImplementedException();
+            
         }
 
         public List<T> GetAll()
