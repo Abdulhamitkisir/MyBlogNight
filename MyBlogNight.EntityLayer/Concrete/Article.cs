@@ -10,12 +10,14 @@ namespace MyBlogNight.EntityLayer.Concrete
     {
         public int ArticleId { get; set; }
         public string Title { get; set; }
-
         public int CategoryId { get; set; }
         public Category Category { get; set; }
         public DateTime CreateDate { get; set; }
         public string CoverImageUrl { get; set; }
         public string MainImageUrl { get; set; }
-
+        public int AppUserID { get; set; }
+        public AppUser AppUser { get; set; }
+        public string Detail { get; set; }
+        public int? ArticleViewCount { get; set; }
     }
 }
