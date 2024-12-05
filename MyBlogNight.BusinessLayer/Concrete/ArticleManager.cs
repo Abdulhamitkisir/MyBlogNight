@@ -28,6 +28,16 @@ namespace MyBlogNight.BusinessLayer.Concrete
             return _articleDal.ArticleListWithCategoryAndAppUser();
         }
 
+        public Article TArticleListWithCategoryAndAppUserByArticleId(int id)
+        {
+            return _articleDal.ArticleListWithCategoryAndAppUserByArticleId(id);
+        }
+
+        public void TArticleViewCountIncrease(int id)
+        {
+            _articleDal.ArticleViewCountIncrease(id);
+        }
+
         public void TDelete(int id)
         {
             _articleDal.Delete(id);
@@ -36,6 +46,11 @@ namespace MyBlogNight.BusinessLayer.Concrete
         public List<Article> TGetAll()
         {
             return _articleDal.GetAll();
+        }
+
+        public List<Article> TGetArticlesByAppUserID(int id)
+        {
+            return _articleDal.GetArticlesByAppUserID(id);
         }
 
         public Article TGetById(int id)

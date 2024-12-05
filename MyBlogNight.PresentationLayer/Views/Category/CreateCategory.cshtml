@@ -8,6 +8,7 @@
     <form method="post">
         <label>Kategori Adi</label>
         <input type="text" asp-for="CategoryName" class="form-control" />
+        <span class="text-danger" asp-validation-for="CategoryName"></span>
         <br />
         <button class="btn btn-primary">Kategor ekle</button>
     </form>
