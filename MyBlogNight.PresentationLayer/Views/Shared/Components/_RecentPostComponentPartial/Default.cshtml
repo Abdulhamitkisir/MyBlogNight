@@ -1,0 +1,21 @@
+﻿@model List<Article>
+
+
+<div class="widget">
+    <h2 class="widget-title">Last 3 Article</h2>
+    <div class="blog-list-widget">
+        <div class="list-group">
+            @foreach (var item in Model)
+            {
+                <a href="/Article/ArticleDetail/@item.ArticleId" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="w-100 justify-content-between">
+                        <img src="@item.CoverImageUrl" alt="" class="img-fluid float-left">
+                        <h5 class="mb-1">@item.Title</h5>
+                        <small>@item.CreateDate</small>
+                    </div>
+                </a>
+            }
+
+        </div>
+    </div><!-- end blog-list -->
+</div><!-- end widget -->

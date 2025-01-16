@@ -1,0 +1,21 @@
+﻿@model Category
+@{
+    ViewData["Title"] = "UpdateCategory";
+    Layout = "~/Areas/Author/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h3>Category Update Page</h3>
+
+<form method="post">
+    <div class="container" style="margin-left: 10px;">
+        <br /><br />
+        <label>Başlık</label>
+        <input type="hidden" asp-for="CategoryId" />
+        <input type="text" asp-for="CategoryName" class="form-control" />
+        <br />
+        
+
+        <br />
+        <button class="btn btn-primary">Save Update</button>
+    </div>
+</form>

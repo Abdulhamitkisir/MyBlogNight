@@ -29,12 +29,13 @@ namespace MyBlogNight.PresentationLayer.Controllers
                 Email = model.Email,
                 Surname = model.Surname,
                 UserName = model.Username,
+                PasswordHash=model.Password,                
                 ImageUrl = "test"
             };
             var result = await _userManager.CreateAsync(appUser, model.Password);
             if (result.Succeeded) 
             {
-                return RedirectToAction("Index", "Login");
+                return Redirect("/Login/Index");
             }
             else
             {

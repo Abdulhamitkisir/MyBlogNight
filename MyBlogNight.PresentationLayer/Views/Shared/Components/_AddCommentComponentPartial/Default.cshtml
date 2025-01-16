@@ -1,0 +1,28 @@
+﻿@model MyBlogNight.EntityLayer.Concrete.Comment
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<form class="form-wrapper" method="post" action="/Default/SaveComment">
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+    <!-- Diğer kodlar -->
+</form>
+
+<form class="form-wrapper" method="post" action="/Default/SaveComment">
+    <!-- ArticleId'yi gizli olarak gönderiyoruz -->
+    <input type="hidden" asp-for="ArticleId" />
+   
+    <!-- Kullanıcı adı giriş alanı -->
+    <input type="text" name="UserName" asp-validation-for="UserError" class="form-control" placeholder="Your username" required />
+     <!-- Kullanıcı bulunamazsa buraya hata mesajı yazılır -->
+        @Html.ValidationMessage("UserName", "", new { @class = "text-danger" })
+   
+    <!-- Yorum metni alanı -->
+    <textarea class="form-control" asp-for="CommentDetail" placeholder="Your comment" required></textarea>
+   
+
+    <!-- Gönder butonu -->
+    <button type="submit" class="btn btn-primary">Submit Comment</button>
+</form>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.13/jquery.validate.unobtrusive.min.js"></script>

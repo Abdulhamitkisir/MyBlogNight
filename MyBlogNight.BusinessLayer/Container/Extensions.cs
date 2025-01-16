@@ -20,8 +20,8 @@ namespace MyBlogNight.BusinessLayer.Container
         {
            
             services.AddScoped<IArticleDal, EfArticleDal>();
-
             services.AddScoped<IArticleService, ArticleManager>();
+
             services.AddScoped<ICategoryDal, EfCategoryDal>();
             services.AddScoped<ICategoryService, CategoryManager>();
 

@@ -9,10 +9,13 @@ namespace MyBlogNight.BusinessLayer.Abstract
 {
     public interface IArticleService :IGenericService<Article>
     {
+        
         public List<Article> TArticleListWithCategory();
         public List<Article> TArticleListWithCategoryAndAppUser();
         public Article TArticleListWithCategoryAndAppUserByArticleId(int id);
         public void TArticleViewCountIncrease(int id);
         public List<Article> TGetArticlesByAppUserID(int id);
+        public Article TGetLastArticle();
+        public Article TGetArticleDetails(int id);
     }
 }

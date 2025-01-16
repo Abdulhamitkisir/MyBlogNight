@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Dtos\ArticleDtos\" />
-    <Folder Include="Dtos\CategoryDtos\" />
     <Folder Include="Dtos\CommentDtos\" />
     <Folder Include="Dtos\ContactDtos\" />
     <Folder Include="Dtos\SocialMediaDtos\" />

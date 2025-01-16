@@ -1,0 +1,88 @@
+﻿@model Article
+@{
+    ViewData["Title"] = "ArticleDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section lb m3rem">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="page-wrapper">
+                    <div class="blog-title-area">
+
+
+                        <h3>@Model.Title</h3>
+
+                        <div class="blog-meta big-meta">
+                            <small><a href="marketing-single.html" title="">@Model.CreateDate.ToString("dd-MMM-yyyy")</a></small>
+                            <small><a href="blog-author.html" title="">@Model.AppUser.Name @Model.AppUser.Surname</a></small>
+                            <small><a href="#" title=""><i class="fa fa-eye"></i> @Model.ArticleViewCount</a></small>
+                        </div><!-- end meta -->
+
+                        <div class="post-sharing">
+                            <ul class="list-inline">
+                                <li><a href="#" class="fb-button btn btn-primary"><i class="fa fa-facebook"></i> <span class="down-mobile">Share on Facebook</span></a></li>
+                                <li><a href="#" class="tw-button btn btn-primary"><i class="fa fa-twitter"></i> <span class="down-mobile">Tweet on Twitter</span></a></li>
+                                <li><a href="#" class="gp-button btn btn-primary"><i class="fa fa-google-plus"></i></a></li>
+                            </ul>
+                        </div><!-- end post-sharing -->
+                    </div><!-- end title -->
+
+                    <div class="single-post-media">
+                        <img src="@Model.CoverImageUrl" alt="" class="img-fluid">
+                    </div><!-- end media -->
+
+                    <div class="blog-content">
+                        <div class="pp">
+                            <p>@Model.Detail </p>
+
+                        </div><!-- end pp -->
+
+                    </div><!-- end pp -->
+                </div><!-- end content -->
+
+
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="banner-spot clearfix">
+                            <div class="banner-img">
+                                <img src="upload/banner_01.jpg" alt="" class="img-fluid">
+                            </div><!-- end banner-img -->
+                        </div><!-- end banner -->
+                    </div><!-- end col -->
+                </div><!-- end row -->
+
+                <hr class="invis1">
+
+                <div class="custombox authorbox clearfix">
+                    <h4 class="small-title">About author</h4>
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                            <img src="@Model.AppUser.ImageUrl" alt="" class="img-fluid rounded-circle">
+                        </div><!-- end col -->
+
+                        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+                            <h4>@Model.AppUser.Name @Model.AppUser.Surname</h4>
+                            <p>@Model.AppUser.Detail</p>
+
+
+
+                        </div><!-- end col -->
+                    </div><!-- end row -->
+                </div><!-- end author-box -->
+                @await Component.InvokeAsync("_CommentListByArticleIdComponentPartial", new { ArticleId = Model.ArticleId })
+
+                <hr class="invis1">
+
+
+                @await Component.InvokeAsync("_AddCommentComponentPartial", new { ArticleId = Model.ArticleId })
+
+            </div><!-- end page-wrapper -->
+        </div><!-- end col -->
+
+
+    </div><!-- end row -->
+    <!-- end container -->
+</section>

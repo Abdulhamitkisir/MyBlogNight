@@ -1,10 +1,60 @@
-﻿@model List<MyBlogNight.EntityLayer.Concrete.Article>
+﻿@model List<Article>
 @{
-    Layout = null;
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Author/Views/Shared/_AdminLayout.cshtml";
+    int row = 0;
 }
+<h3>Article List Page</h3>
+<br />
 
-@foreach (var item in Model)
-{
-    <h2>@item.Title</h2>
-    <br />
-}
+<table class="table mt-3">
+    <thead>
+        <tr>
+            @*   <th scope="col">Artickle ID</th> *@
+            <th scope="col">#</th>
+            <th scope="col">Image</th>
+            <th scope="col">Title</th>
+            <th scope="col">CreateDate</th>
+            <th scope="col">DetailL</th>
+            <th scope="col">Category NameL</th>
+            <th scope="col">View</th>
+            <th scope="col">Delete</th>
+            <th scope="col">Update</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            row++;
+            <tr>
+                @* <td>@item.ArticleId</td> *@
+                <td>@row</td>
+                <td>
+                    <img src="@item.CoverImageUrl" alt="Cover Image" style="width: 100px; height: auto; object-fit: cover;" />
+                </td>
+                <td>@item.Title</td>
+                <td>@item.CreateDate.ToShortDateString()</td>
+
+                <td>
+                    @if (!string.IsNullOrEmpty(item.Detail) && item.Detail.Length > 25)
+                    {
+                        @item.Detail.Substring(0, 25)
+                       
+                    }
+                    else
+                    {
+                        @item.Detail
+                    }
+                </td>
+
+                @* <td>@item.Detail.Substring(0, 25)..... </td> *@
+                <td>@item.Category.CategoryName</td>
+                <td><a href="/Article/ArticleDetail/@item.ArticleId" target="_blank" class="btn btn-info">Go to article</a></td>
+                <td><a href="/Author/Article/DeleteArticle/@item.ArticleId" class="btn btn-danger">Delete</a></td>
+                <td><a href="/Author/Article/UpdateArticle/@item.ArticleId" class="btn btn-success">Update</a></td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+<a href="/Author/Article/CreateArticle" class="btn btn-primary">Add New Article</a>

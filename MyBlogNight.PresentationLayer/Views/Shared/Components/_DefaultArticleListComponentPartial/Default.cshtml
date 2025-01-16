@@ -1,22 +1,102 @@
-﻿@model List<Article>
+﻿﻿﻿@using X.PagedList.Mvc.Core
+@model X.PagedList.IPagedList<MyBlogNight.EntityLayer.Concrete.Article>
 
-<div class="col-md-8">
-    <h3 class="mb-4">Blog Listesi</h3>
+@foreach (var item in Model)
+{
+    <div class="page-wrapper">
+        <div class="blog-custom-build">
+            <div class="blog-box wow fadeIn">
+                <div class="post-media">
+                    <a href="/Article/ArticleDetail/@item.ArticleId" title="">
+                        <img src="@item.CoverImageUrl" alt="" class="img-fluid">
+                        <div class="hovereffect">
+                            <span></span>
+                        </div>
+                    </a>
+                  
+                </div>
+                <div class="blog-meta big-meta text-center">
 
-    <!-- Blog 1 -->
-    @foreach (var item in Model)
-    {
-        <div class="card mb-4">
-            <img src="@item.CoverImageUrl" class="card-img-top" alt="Blog Kapak">
-            <div class="card-body">
-                <h5 class="card-title">@item.Title</h5>
-                <p class="card-text">
-                    <small class="text-muted">Kategori :@item.Category.CategoryName | Yazar: @item.AppUser.Name @item.AppUser.Surname | Tarih: @item.CreateDate.ToString("dd-MMM-yyyy")</small>
-                </p>
-                <p class="card-text">@item.Detail.Substring(0, 100)... <a href="/Article/ArticleDetail/@item.ArticleId">Devamini Oku</a></p>
+                    <h4><a href="/Article/ArticleDetail/@item.ArticleId" title="">@item.Title</a></h4>
+                    @if (item.Detail.Length >= 100)
+                    {
+                        <p class="card-text">@item.Detail.Substring(0, 150)... <a href="/Article/ArticleDetail/@item.ArticleId">Devamini Oku</a></p>
+                    }
+                    else
+                    {
+                        <p>@item.Detail ...<a href="/Article/ArticleDetail/@item.ArticleId">Devamını Oku</a></p>
+                    }
+                    <small><a title="">Category : @item.Category.CategoryName</a></small>
+                    <small><a title="">@item.CreateDate.ToString("dd-MMM-yyyy")</a></small>
+                    <small><a title="">@item.AppUser.Name @item.AppUser.Surname</a></small>
+                    <small><a title=""><i class="fa fa-eye"></i> @item.ArticleViewCount</a></small>
+                </div>
             </div>
         </div>
+    </div>
+}
+
+<hr class="invis">
+
+<!-- Sayfalama -->
+
+<div class="row">
+    <div class="col-md-12">
+        <nav aria-label="Page navigation">
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions
+       {
+           LiElementClasses = new[] { "page-item" },
+           PageClasses = new[] { "page-link" },
+           UlElementClasses = new[] { "pagination", "justify-content-center" }
+       })
+        </nav>
+    </div>
+</div>
+
+<style>
+    .pagination li {
+        display: inline-block;
     }
 
+        .pagination li a, .pagination li span {
+            background-color: #ffc107;
+            color: #000;
+            border: none;
+            padding: 10px 15px;
+            margin: 2px;
+            text-decoration: none;
+        }
 
-</div>
+            .pagination li a:hover {
+                background-color: #e0a800;
+            }
+
+    .pagination .active span {
+        background-color: #e0a800;
+        font-weight: bold;
+    }
+
+    .pagination .disabled span {
+        background-color: #ffc107;
+        color: #aaa;
+    }
+</style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery'i yükleyin -->
+<script>
+    $(document).ready(function () {
+        $('.page-link').on('click', function (e) {
+            e.preventDefault(); // Sayfanın yenilenmesini engelle
+            var page = $(this).attr('data-page'); // Tıklanan sayfanın numarasını al
+            var pageSize = 2; // Sayfa boyutunu sabitle
+
+            // AJAX ile yeni sayfa verisini yükle
+            $.ajax({
+                url: '@Url.Action("Invoke", "_DefaultArticleListComponentPartial", new { page = "Index", pageSize = 2 })'.replace('Default', page),
+                type: 'GET',
+                success: function (data) {
+                    $('Default').html(data); // Yeni veriyi gelen HTML ile güncelle
+                }
+            });
+        });
+    });
+</script>

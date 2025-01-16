@@ -1,0 +1,38 @@
+﻿@model UserEditViewModel
+
+@{
+    ViewData["Title"] = "EditMyProfile";
+    Layout = "~/Areas/Author/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container" style="margin-left: 10px;">
+    <br /><br />
+    <form method="post">
+        <label>Image</label>
+        <br /><br />
+        <img src="@Model.ImageUrl" alt="Name Icon" style="width: 200px; height: 150px;" />
+        <br /><br />
+        <label>Name</label>
+        <input type="text" asp-for="Name" class="form-control" />
+        <br />
+        <label>Surname</label>
+        <input type="text" asp-for="Surname" class="form-control" />
+        <br />
+        <label>User Name</label>
+        <input type="text" asp-for="Username" class="form-control" />
+        <br />
+        <label>E-Mail</label>
+        <input type="text" asp-for="Email" class="form-control" />
+        <br />
+        <label>Image Url</label>
+        <input type="text" asp-for="ImageUrl" class="form-control" />
+        <br />
+        <label>Description</label>
+        <textarea asp-for="Detail" class="form-control" rows="5"></textarea>
+        <br />
+        <label>Password</label>
+        <input type="password" asp-for="Password" class="form-control" />
+        <br />
+        <button class="btn btn-primary">Update Profile Information</button>
+    </form>
+</div>

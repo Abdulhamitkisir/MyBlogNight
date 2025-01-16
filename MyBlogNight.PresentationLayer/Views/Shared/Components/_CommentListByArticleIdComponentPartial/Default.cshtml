@@ -1,5 +1,9 @@
 ﻿@model List<Comment>
 
+    @{
+        
+    }
+@* 
 <div class="comments">
     <h3>Yorumlar</h3>
     @foreach (var item in Model)
@@ -11,4 +15,71 @@
     }
   
 
-</div>
+</div> *@
+
+<div class="custombox clearfix">
+    <h4 class="small-title">Comments</h4>
+    @if (Model != null && Model.Any())
+    {
+        @foreach (var item in Model)
+        {
+            // Created alanı ile mevcut tarih arasındaki farkı hesaplıyoruz.
+            var timespan = DateTime.Now - item.CreatedDate;
+
+            string timeAgo = string.Empty;
+
+            if (timespan.TotalDays >= 365)
+            {
+                timeAgo = $"{(int)(timespan.TotalDays / 365)} years ago";
+            }
+            else if (timespan.TotalDays >= 30)
+            {
+                timeAgo = $"{(int)(timespan.TotalDays / 30)} mounth ago";
+            }
+            else if (timespan.TotalDays >= 1)
+            {
+                timeAgo = $"{(int)timespan.TotalDays} days ago";
+            }
+            else if (timespan.TotalHours >= 1)
+            {
+                timeAgo = $"{(int)timespan.TotalHours} hour ago";
+            }
+            else if (timespan.TotalMinutes >= 1)
+            {
+                timeAgo = $"{(int)timespan.TotalMinutes} minute ago";
+            }
+            else
+            {
+                timeAgo = "just now";
+            }
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="comments-list">
+                        <div class="media">
+                            <a class="media-left" href="#">
+                                <img src="https://img.freepik.com/premium-vector/happy-reaction-chat-icon_192037-9479.jpg?w=826" alt="" class="rounded-circle">
+                            </a>
+                            <div class="media-body">
+                                <h4 class="media-heading user_name">@item.AppUser.Name  @item.AppUser.Surname <small>@timeAgo</small></h4>
+                                <p>@item.CommentDetail</p>
+                                <a href="#" class="btn btn-primary btn-sm">Reply</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div><!-- end col -->
+            </div>
+
+            <!-- end row -->
+        }
+
+    }
+    else
+    {
+
+        <p>There are no comments yet for this article.</p>
+    }
+    
+    
+</div><!-- end custom-box -->

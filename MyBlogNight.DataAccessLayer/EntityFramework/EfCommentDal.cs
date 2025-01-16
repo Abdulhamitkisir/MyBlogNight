@@ -17,10 +17,17 @@ namespace MyBlogNight.DataAccessLayer.EntityFramework
         {
         }
 
+        public List<Comment> GetCommentsByAppUserId(int id)
+        {
+            var context = new BlogContext();
+            var values=context.Comments.Where(x=> x.ArticleId==id).Include(y=> y.AppUser).ToList();
+            return values;
+        }
+
         public List<Comment> GetCommentsByArticleId(int id)
         {
             var context = new BlogContext();
-            var values = context.Comments.Where(x => x.ArticleId == id).Include(y=> y.AppUser).ToList(); 
+            var values = context.Comments.Where(x => x.ArticleId == id).Include(y => y.AppUser).ToList();
             return values;
         }
     }

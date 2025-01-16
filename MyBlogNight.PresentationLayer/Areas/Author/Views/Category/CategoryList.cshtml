@@ -1,0 +1,32 @@
+﻿@model List<MyBlogNight.EntityLayer.Concrete.Category>
+@{
+    ViewData["Title"] = "CategoryList";
+    Layout = "~/Areas/Author/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h3>Category List</h3>
+
+
+
+<table class="table mt-3">
+        <tr>
+            <th>#</th>
+            <th>Category Name</th>
+            <th>Delete</th>
+            <th>Update</th>
+            
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.CategoryId</td>
+                <td>@item.CategoryName</td>
+                <td><a href="/Author/Category/DeleteCategory/@item.CategoryId" class="btn btn-danger">Delete</a></td>
+                <td><a href="/Author/Category/UpdateCategory/@item.CategoryId" class="btn btn-success">Update</a></td>
+               
+            </tr>
+        }
+    </table>
+
+
+<a href="/Author/Category/CreateCategory" class="btn btn-primary">Add New Category</a>

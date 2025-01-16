@@ -1,0 +1,16 @@
+﻿@model List<MyBlogNight.DtoLayer.Dtos.CategoryDtos.CategoryArticleCountDto>
+
+
+<div class="widget">
+    <h2 class="widget-title">Popular Categories</h2>
+    <div class="link-widget">
+        @foreach (var item in Model)
+        {
+            <ul>
+                <li><a href="#">@item.CategoryName <span>(@item.ArticleCount)</span></a></li>
+                
+            </ul>
+        }
+        
+    </div><!-- end link-widget -->
+</div><!-- end widget -->

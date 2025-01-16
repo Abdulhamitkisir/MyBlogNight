@@ -1,0 +1,33 @@
+﻿@model Article
+@{
+    ViewData["Title"] = "UpdateArticle";
+    Layout = "~/Areas/Author/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h3>Article Update Page</h3>
+<br />
+
+<form method="post">
+    <div class="container" style="margin-left: 10px;">
+        <br /><br />
+        <label>Title</label>
+        <input type="hidden" asp-for="ArticleId" />
+        <input type="text" asp-for="Title" class="form-control" />
+        <br />
+        <label>Aricle Cover Image Url</label>
+        <input type="text" asp-for="CoverImageUrl" class="form-control" />
+        <br />
+        <label>Main Image Url</label>
+        <input type="text" asp-for="MainImageUrl" class="form-control" />
+        <br />
+        <label>Category</label>
+        @Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.Categories, new { @class = "form-control" })
+        <br />
+        <label>Detail</label>
+        <textarea asp-for="Detail" class="form-control" rows="10"></textarea>
+        <br />
+
+        <br />
+        <button class="btn btn-primary">Makalaeyi Ekle</button>
+    </div>
+</form>

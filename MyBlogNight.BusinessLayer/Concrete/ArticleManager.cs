@@ -18,6 +18,8 @@ namespace MyBlogNight.BusinessLayer.Concrete
             _articleDal = articleDal;
         }
 
+       
+
         public List<Article> TArticleListWithCategory()
         {
            return _articleDal.ArticleListWithCategory();
@@ -48,6 +50,11 @@ namespace MyBlogNight.BusinessLayer.Concrete
             return _articleDal.GetAll();
         }
 
+        public Article TGetArticleDetails(int id)
+        {
+          return _articleDal.GetArticleDetails(id);
+        }
+
         public List<Article> TGetArticlesByAppUserID(int id)
         {
             return _articleDal.GetArticlesByAppUserID(id);
@@ -56,6 +63,11 @@ namespace MyBlogNight.BusinessLayer.Concrete
         public Article TGetById(int id)
         {
             return _articleDal.GetById(id);
+        }
+
+        public Article TGetLastArticle()
+        {
+          return _articleDal.GetLastArticle();
         }
 
         public void TInsert(Article entity)

@@ -2,7 +2,7 @@
 @{
     Layout = null;
 }
-<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+@* <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
 <div class="container">
 <form method="post">
     <br /><br />
@@ -15,4 +15,108 @@
     <br />
     <button class="btn btn-primary">Giriş Yap</button>
 </form>
-</div>
+</div> *@
+
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <!-- Bootstrap CSS bağlantısı -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJt3W3X7b2zvJ7dujXduSABe7nQ4hJvXT1uC5L9JvQ0zRYnGfYPkpln/7OSh" crossorigin="anonymous">
+    <style>
+        body, html {
+            height: 100%;
+        }
+
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .login-form {
+            width: 100%;
+            max-width: 600px;
+            padding: 30px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #f8f9fa;
+            height: 650px; /* Örneğin sabit bir yükseklik */
+        }
+
+        .logo-container {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+            .logo-container img {
+                max-width: 100%;
+                height: auto;
+                width: 200px; /* Logo genişliği burada ayarlanabilir */
+            }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <div class="login-form">
+            <!-- Logo alanı -->
+            <div class="logo-container">
+                <img src="/markedia/images/version/market-logo.png" alt="Logo">
+            </div>
+            <br />
+            <br />
+            <h3 class="text-center">Author Login Page</h3>
+            <br />
+            <br />
+            <form method="post">
+                <div class="mb-3">
+                    <label for="username" class="form-label">User Name</label>
+                    <input type="text" class="form-control" asp-for="Username" placeholder="Please enter user name" required>
+                </div>
+                <br />
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" asp-for="Password" placeholder="Please enter password" required>
+                        
+                            <i class="bi bi-eye"></i>
+                    
+                    </div>
+                </div>
+                <br />
+                <br />
+                <button type="submit" class="btn btn-primary w-100">Login</button>
+                <p class="text-center mt-3">
+                    Don't have an account yet?
+                    <a href="register.html" class="btn btn-link">Create Account</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bootstrap ve Icons için gerekli JavaScript bağlantıları -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0r0pE4wn2j5R7hXyJdfoPUvQxWsAHyg4UjVp2z70VOQ08J0p" crossorigin="anonymous"></script>
+
+    <!-- Şifreyi gösterme işlevi için JavaScript -->
+    <script>
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordField = document.getElementById('password');
+
+        togglePassword.addEventListener('click', function (e) {
+            // Şifreyi görünür hale getirme
+            const type = passwordField.type === 'password' ? 'text' : 'password';
+            passwordField.type = type;
+            // Göz simgesini değiştirme
+            this.innerHTML = type === 'password' ? '<i class="bi bi-eye"></i>' : '<i class="bi bi-eye-slash"></i>';
+        });
+    </script>
+
+</body>
+</html>
+

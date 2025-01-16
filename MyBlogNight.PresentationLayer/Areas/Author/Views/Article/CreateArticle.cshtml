@@ -1,0 +1,35 @@
+﻿@model Article
+@{
+    ViewData["Title"] = "CreateArticle";
+    Layout = "~/Areas/Author/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<h3>Article Create Page</h3>
+<br />
+
+
+<form method="post">
+    <div class="container" style="margin-left: 10px;">
+        <br /><br />
+        <label>Title</label>
+        <input type="text" asp-for="Title" class="form-control" />
+        <br />
+        <label>Cover Image Url</label>
+        <input type="text" asp-for="CoverImageUrl" class="form-control" />
+        <br />
+        <label>Main Image Url</label>
+        <input type="text" asp-for="MainImageUrl" class="form-control" />
+        <br />
+        <label>Category</label>
+        @Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.v1, new { @class = "form-control" })
+            <br />
+        <label>Detail</label>
+        <textarea asp-for="Detail" class="form-control" rows="10"></textarea>
+        <br />       
+
+        <br />
+        <button class="btn btn-primary">Add New Article</button>
+    </div>
+
+</form>

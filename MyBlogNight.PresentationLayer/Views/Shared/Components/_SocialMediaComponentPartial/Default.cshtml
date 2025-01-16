@@ -1,0 +1,15 @@
+﻿@model List<SocialMedia>
+
+<div class="post-sharing">
+    <ul class="list-inline d-flex justify-content-center">
+        @foreach (var item in Model)
+        {
+            <li class="list-inline-item">
+                <a href="@item.LinkUrl" class="btn btn-secondary" aria-hidden="true">
+                    <i class="@item.IconUrl"></i>
+                    @* <span class="down-mobile"> Share @item.IconUrl</span> *@
+                </a>
+            </li>
+        }
+    </ul>
+</div>
